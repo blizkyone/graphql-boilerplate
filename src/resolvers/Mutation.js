@@ -45,15 +45,15 @@ const Mutation = {
       const userToDelete = await db.Users.findById(args.id)
       if (!userToDelete) throw new Error('No user found')
 
-      const postsToDelete = await db.Posts.find({ author: args.id }).lean()
-      if (postsToDelete) {
-         await asyncForEach(postsToDelete, async (post) => {
-            await db.Comments.deleteMany({ post: post._id })
-         })
-         await db.Posts.deleteMany({ author: args.id })
-      }
+      // const postsToDelete = await db.Posts.find({ author: args.id }).lean()
+      // if (postsToDelete) {
+      //    await asyncForEach(postsToDelete, async (post) => {
+      //       await db.Comments.deleteMany({ post: post._id })
+      //    })
+      //    await db.Posts.deleteMany({ author: args.id })
+      // }
 
-      const comments = await db.Comments.deleteMany({ author: args.id })
+      // const comments = await db.Comments.deleteMany({ author: args.id })
       const user = await db.Users.findOneAndDelete(args.id)
 
       return user

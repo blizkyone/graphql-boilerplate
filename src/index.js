@@ -1,4 +1,4 @@
-import { GraphQLServer } from 'graphql-yoga'
+import { GraphQLServer, PubSub } from 'graphql-yoga'
 // import Subscription from './resolvers/Subscriptions.js'
 import db from './db.js'
 import Query from './resolvers/Query.js'
