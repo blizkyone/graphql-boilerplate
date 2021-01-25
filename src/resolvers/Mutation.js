@@ -3,6 +3,9 @@ import auth from '../utils/auth.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
+//Import specific mutations???
+//Login Mutations
+
 const Mutation = {
    authenticateUser: async (parent, args, { db }, info) => {
       const user = await db.Users.findOne({ email: args.data.email })

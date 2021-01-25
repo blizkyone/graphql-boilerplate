@@ -1,4 +1,6 @@
 import { GraphQLServer, PubSub } from 'graphql-yoga'
+// import express from 'express'
+// import cors from 'cors'
 import path from 'path'
 import fs from 'fs'
 import os from 'os'
@@ -22,6 +24,13 @@ const server = new GraphQLServer({
       req,
    }),
 })
+
+// server.express.use(cors())
+// server.express.use(express.json())
+
+// const customRoutes = express.Router()
+// customRoutes.get('/api', (req, res) => res.send({ key: 'Hello' }))
+// server.express.use(customRoutes)
 
 let options = {
    port: 4000,
@@ -50,6 +59,6 @@ if (server.express.get('env') === 'development') {
    }
 }
 
-server.start(options, ({ port }) =>
+await server.start(options, ({ port }) =>
    console.log(`The server is live in port ${port}`)
 )

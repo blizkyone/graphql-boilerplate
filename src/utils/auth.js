@@ -16,3 +16,22 @@ const auth = (req, requireAuth = true) => {
 }
 
 export default auth
+
+// import passport from 'passport'
+// import FacebookStrategy from 'passport-facebook'
+
+// const facebookOptions = {
+//    clientID: process.env['FACEBOOK_CLIENT_ID'],
+//    clientSecret: process.env['FACEBOOK_CLIENT_SECRET'],
+//    callbackURL: '/return',
+// }
+
+// const facebookCallback = (accessToken, refreshToken, profile, cb) => {
+//    console.log(`Access Token: ${accessToken}`)
+//    console.log(`Refresh Token: ${refreshToken}`)
+//    return cb(null, profile)
+// }
+
+// passport.use(new FacebookStrategy(facebookOptions, facebookCallback))
+
+// export default passport
