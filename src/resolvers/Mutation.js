@@ -8,11 +8,12 @@ import bcrypt from 'bcryptjs'
 
 const Mutation = {
    authenticateUser: async (parent, args, { db }, info) => {
-      const user = await db.Users.findOne({ email: args.data.email })
+      console.log('excecuting authenticateUser mutation')
+      const user = await db.Users.findOne({ uid: args.uid })
       if (!user) throw new Error('No user found')
-      let isMatch = await bcrypt.compare(args.data.password, user.password)
+      // let isMatch = await bcrypt.compare(args.data.password, user.password)
 
-      if (!isMatch) throw new Error('Invalid password')
+      // if (!isMatch) throw new Error('Invalid password')
       const token = jwt.sign(
          { _id: user._id.toString() },
          process.env.JWT_SECRET

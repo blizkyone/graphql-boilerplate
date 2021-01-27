@@ -9,6 +9,14 @@ mongoose.connect(process.env.MONGODB_URL, {
 })
 
 const userSchema = mongoose.Schema({
+   uid: {
+      type: String,
+      required: true,
+   },
+   username: {
+      type: String,
+      required: true,
+   },
    name: {
       type: String,
       required: true,
@@ -18,7 +26,6 @@ const userSchema = mongoose.Schema({
       required: true,
    },
    password: String,
-   age: Number,
    tokens: [
       {
          token: {
