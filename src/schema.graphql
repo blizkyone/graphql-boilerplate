@@ -4,21 +4,26 @@ type Query {
 
 type Mutation {
    createUser(data: CreateUserInput): AuthPayload!
+   verifyUsername(username: String!): Boolean!
    authenticateUser(uid: String!): AuthPayload!
    deleteUser(id: ID!): User!
    updateUser(data: UpdateUserInput!): User!
 }
 
 type AuthPayload {
-   token: String!
-   user: User!
+   token: String
+   user: User
+   message: String
 }
 
 input CreateUserInput {
    uid: String!
    name: String!
+   username: String!
    email: String!
    password: String!
+   birthDate: Int!
+   gender: String!
 }
 
 input UpdateUserInput {

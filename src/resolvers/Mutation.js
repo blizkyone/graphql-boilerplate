@@ -1,19 +1,13 @@
 import asyncForEach from '../utils/asyncForEach.js'
 import auth from '../utils/auth.js'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
-
-//Import specific mutations???
-//Login Mutations
+// import bcrypt from 'bcryptjs'
 
 const Mutation = {
    authenticateUser: async (parent, args, { db }, info) => {
-      console.log('excecuting authenticateUser mutation')
       const user = await db.Users.findOne({ uid: args.uid })
-      if (!user) throw new Error('No user found')
-      // let isMatch = await bcrypt.compare(args.data.password, user.password)
+      if (!user) return { message: 'Create new user' }
 
-      // if (!isMatch) throw new Error('Invalid password')
       const token = jwt.sign(
          { _id: user._id.toString() },
          process.env.JWT_SECRET
@@ -22,6 +16,10 @@ const Mutation = {
       await user.save()
 
       return { token, user }
+   },
+   verifyUsername: async (parent, args, { db }, info) => {
+      const usernameExists = await db.Users.exists({ username: args.username })
+      return usernameExists
    },
    createUser: async (parent, args, { db }, info) => {
       if (args.data.password.length < 6)
