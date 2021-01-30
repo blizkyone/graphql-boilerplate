@@ -26,6 +26,8 @@ const userSchema = mongoose.Schema({
       required: true,
    },
    password: String,
+   birthDate: Date,
+   gender: String,
    tokens: [
       {
          token: {

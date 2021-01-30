@@ -1,7 +1,7 @@
 import asyncForEach from '../utils/asyncForEach.js'
 import auth from '../utils/auth.js'
 import jwt from 'jsonwebtoken'
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 
 const Mutation = {
    authenticateUser: async (parent, args, { db }, info) => {
@@ -29,8 +29,11 @@ const Mutation = {
       })
       if (emailTaken) throw new Error('Email taken')
 
+      let birthDate = parseInt(args.data.birthDate)
+
       const user = new db.Users({
          ...args.data,
+         birthDate,
       })
 
       const token = jwt.sign(
