@@ -44,6 +44,7 @@ const Mutation = {
 
       await user.save()
 
+      user.birthDate = user.birthDate.toString()
       return { token, user }
    },
    deleteUser: async (parent, args, { db }, info) => {

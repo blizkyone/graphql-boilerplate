@@ -5,6 +5,7 @@ const auth = (req, requireAuth = true) => {
 
    if (header) {
       const token = header.replace('Bearer ', '')
+      console.log(token)
       // const token = header.split(' ')[1]
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
       return decoded._id
